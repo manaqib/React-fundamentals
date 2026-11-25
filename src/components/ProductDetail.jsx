@@ -74,7 +74,7 @@ export default function ProductDetail() {
                         <div className="flex items-center gap-2 mt-2 sm:mt-0">
                             <p className="flex items-center text-sm font-bold gap-1">Brand: </p>
                             <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
-                                {isProductDetail.brand}
+                                {isProductDetail.brand ? isProductDetail.brand  : "N/A"}
                             </p>
                         </div>
                          <div className="flex items-center text-sm font-medium leading-none text-gray-500 dark:text-gray-40 gap-1">  
