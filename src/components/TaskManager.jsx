@@ -47,9 +47,9 @@ export default function TaskManager() {
 
     return (
         <>
-            <div className='m-auto mt-10 flex flex-col items-center justify-center p-6 space-y-4 md:space-y-6 sm:p-8 w-full bg-white rounded-lg '>
-                <div className=" px-6  mx-auto lg:py-0 max-w-[750px]  w-full ">
-                    <div className="w-full bg-white   dark:border p-10 dark:bg-gray-800 dark:border-gray-700 shadow rounded-lg">
+            <div className='m-auto mt-10 flex flex-col items-center justify-center space-y-4 md:space-y-6 sm:p-8 w-full bg-white rounded-lg '>
+                <div className="  mx-auto lg:py-0 max-w-[750px]  w-full ">
+                    <div className="w-full bg-white   dark:border p-10 !sm:p-4 !xs:p-4 dark:bg-gray-800 dark:border-gray-700 shadow rounded-lg">
                         <div className="block text-xl font-bold mb-6 ">
                             <h2>  My Task Manager</h2>
                         </div>
@@ -93,11 +93,11 @@ export default function TaskManager() {
                             <span>Completed: {completedTasks}</span>
                             <span>Pending: {pendingTasks}</span>
                         </div>
-                        <span className="flex items-center justify-start text-sm text-gray-600 dark:text-gray-400 mt-4 gap-2">
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer" onClick={() => setFilter('all')}>All</button>
-                            <button className="bg-green-500 text-white px-4 py-2 rounded cursor-pointer" onClick={() => setFilter('completed')}>Completed</button>
-                            <button className="bg-yellow-500 text-white px-4 py-2 rounded cursor-pointer" onClick={() => setFilter('pending')}>Pending</button>
-                            <button className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer" onClick={handleClearCompleted}>Clear Completed</button>
+                        <span className="flex flex-col sm:flex-row items-center justify-start text-sm text-gray-600 dark:text-gray-400 mt-4 gap-2">
+                            <button className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer w-full sm:w-full" onClick={() => setFilter('all')}>All</button>
+                            <button className="bg-green-500 text-white px-4 py-2 rounded cursor-pointer w-full sm:w-full" onClick={() => setFilter('completed')}>Completed</button>
+                            <button className="bg-yellow-500 text-white px-4 py-2 rounded cursor-pointer w-full sm:w-full" onClick={() => setFilter('pending')}>Pending</button>
+                            <button className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer w-full sm:w-full" onClick={handleClearCompleted}>Clear Completed</button>
                         </span>
                     </div>
 

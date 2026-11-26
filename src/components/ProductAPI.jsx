@@ -51,7 +51,7 @@ export default function ProductAPI() {
             )}
 
             {!loading && !error && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:px-4">
                     {products.map((product) => (
                         <div key={product.id} className='border p-4 rounded-lg shadow-md w-full'>
                             <p className="text-sm text-gray-500 font-bold capitalize">

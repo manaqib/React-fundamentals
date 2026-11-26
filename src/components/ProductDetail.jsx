@@ -12,6 +12,19 @@ export default function ProductDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
+    const checkStock = (stock) => {
+        if (stock === 0) {
+            return "Out of Stock"
+        } else if (stock >= 1 && stock <= 5) {
+            return "Low Stock"
+        } else {
+            return "In stock"
+        }
+    }
+
+    console.log(" stock value", checkStock(3))
+
     useEffect(() => {
         async function getProductByID(id) {
             try {
@@ -31,6 +44,12 @@ export default function ProductDetail() {
         }
         getProductByID(id);
     }, [id])
+
+    const getStockColor = (stock) => {
+        if(stock === 0) return "text-black";
+        if(stock <=5) return "text-red-700";
+        return "text-green-500"
+    }
 
     useEffect(() => {
         // console.log("Updated Product Detail:", isProductDetail);
@@ -74,32 +93,32 @@ export default function ProductDetail() {
                         <div className="flex items-center gap-2 mt-2 sm:mt-0">
                             <p className="flex items-center text-sm font-bold gap-1">Brand: </p>
                             <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
-                                {isProductDetail.brand ? isProductDetail.brand  : "N/A"}
+                                {isProductDetail.brand ? isProductDetail.brand : "N/A"}
                             </p>
                         </div>
-                         <div className="flex items-center text-sm font-medium leading-none text-gray-500 dark:text-gray-40 gap-1">  
-                            <p className="flex items-center text-sm font-bold "> Category: </p>                         
-                             {isProductDetail.category} 
-                          </div>
-
-                        <div className={`text-sm font-bold  ${isProductDetail.availabilityStatus == "In Stock" ? "text-green-500" : "text-red-200"} `} >
-                          {isProductDetail.availabilityStatus}
+                        <div className="flex items-center text-sm font-medium leading-none text-gray-500 dark:text-gray-40 gap-1">
+                            <p className="flex items-center text-sm font-bold "> Category: </p>
+                            {isProductDetail.category}
                         </div>
 
- <div className="flex items-center gap-2 mt-2 sm:mt-0">
+                        <div className={`text-sm font-bold  ${getStockColor(isProductDetail.stock)} `} >
+                            {checkStock(isProductDetail.stock)}
+                        </div>
+
+                        <div className="flex items-center gap-2 mt-2 sm:mt-0">
                             <p className="flex items-center text-sm font-bold gap-1">Return Policy: </p>
                             <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
                                 {isProductDetail.returnPolicy}
                             </p>
                         </div>
 
-                         <div className="flex items-center gap-2 mt-2 sm:mt-0">
+                        <div className="flex items-center gap-2 mt-2 sm:mt-0">
                             <p className="flex items-center text-sm font-bold gap-1">Shipping Information: </p>
                             <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
                                 {isProductDetail.shippingInformation}
                             </p>
                         </div>
-                         <div className="flex items-center gap-2 mt-2 sm:mt-0">
+                        <div className="flex items-center gap-2 mt-2 sm:mt-0">
                             <p className="flex items-center text-sm font-bold gap-1">Stock: </p>
                             <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
                                 {isProductDetail.stock} left
@@ -108,7 +127,7 @@ export default function ProductDetail() {
                         <div className="flex items-center gap-2 mt-2 sm:mt-0">
                             <p className="flex items-center text-sm font-bold gap-1">Warranty Information: </p>
                             <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
-                                {isProductDetail.warrantyInformation} 
+                                {isProductDetail.warrantyInformation}
                             </p>
                         </div>
 

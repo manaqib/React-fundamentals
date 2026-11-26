@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Link } from 'react-router'
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
@@ -8,88 +9,140 @@ import { CartContext } from '../context/CartContext';
 export default function NavBar() {
     const { cart } = useContext(CartContext);
 
+     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const closeMenu = () => setIsMenuOpen(false);
+
+
+
     return (
         <div>
             <>
-                <nav className="bg-white dark:bg-gray-800 antialiased">
-                    <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-8">
-                                <div className="shrink-0">
-                                </div>
-                                <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
-                                    <li>
-                                        <Link
-                                            to="/"
-                                            title=""
-                                            className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                                        >
-                                            Home
-                                        </Link>
-                                    </li>
-                                    <li className="shrink-0">
-                                        <Link
-                                            to="/task-manager"
-                                            title=""
-                                            className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                                        >
-                                            Task Manager
-                                        </Link>
-                                    </li>
-                                    <li className="shrink-0">
-                                        <Link
-                                            to="/register"
-                                            title=""
-                                            className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                                        >
-                                            Register
-                                        </Link>
-                                    </li>
-                                    <li className="shrink-0">
-                                        <Link
-                                            to="/shoping-cart"
-                                            title=""
-                                            className="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
-                                        >
-                                           View Cart
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="flex items-center lg:space-x-2">
-                                <button
-                                    id="myCartDropdownButton1"
-                                    data-dropdown-toggle="myCartDropdown1"
-                                    type="button"
-                                    className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white"
-                                >
-                                    <span className="sr-only">Cart</span>
-                                    <svg
-                                        className="w-5 h-5 lg:me-1"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width={24}
-                                        height={24}
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
-                                        />
-                                    </svg>
-                                    <span className="hidden sm:flex">My Cart ({cart.length})</span>
+                  <nav className="bg-white dark:bg-gray-800 antialiased ">
+            <div className="max-w-screen-xl mx-auto 2xl:px-0 py-4">
 
-                                </button>
+                <div className="flex items-center justify-between">
 
-                            </div>
-                        </div>
+                    {/* Logo */}
+                    <div className="shrink-0">
+                        <Link to="/" className="text-xl font-bold text-gray-900 dark:text-white">
+                            My Store
+                        </Link>
+                    </div>
+
+                    {/* Desktop Navigation */}
+                    <ul className="hidden lg:flex items-center gap-8">
+                        <li>
+                            <Link to="/" className="nav-link">
+                                Home
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/task-manager" className="nav-link">
+                                Task Manager
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/register" className="nav-link">
+                                Register
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/shoping-cart" className="nav-link">
+                                View Cart
+                            </Link>
+                        </li>
+                    </ul>
+
+                    {/* Cart + Mobile Menu Button */}
+                    <div className="flex items-center gap-2">
+
+                        <Link
+                            to="/shoping-cart"
+                            className="inline-flex items-center gap-2 p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                        >
+                            <svg
+                                className="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M5 4h1.5L9 16h8l3-9H7.312M9 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+                                />
+                            </svg>
+
+                            <span className="hidden sm:inline text-sm font-medium">
+                                My Cart ({cart.length})
+                            </span>
+
+                            <span className="sm:hidden text-sm font-medium">
+                                ({cart.length})
+                            </span>
+                        </Link>
+
+                        {/* Hamburger Button */}
+                        <button
+                            type="button"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-label="Toggle navigation menu"
+                            aria-expanded={isMenuOpen}
+                        >
+                            {isMenuOpen ? (
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            )}
+                        </button>
 
                     </div>
-                </nav>
+                </div>
+
+                {/* Mobile Navigation */}
+                {isMenuOpen && (
+                    <ul className="lg:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+
+                        <li>
+                            <Link onClick={closeMenu} to="/" className="nav-link">
+                                Home
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link onClick={closeMenu} to="/task-manager" className="nav-link">
+                                Task Manager
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link onClick={closeMenu} to="/register" className="nav-link">
+                                Register
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link onClick={closeMenu} to="/shoping-cart" className="nav-link">
+                                View Cart
+                            </Link>
+                        </li>
+
+                    </ul>
+                )}
+
+            </div>
+        </nav>
+
             </>
 
         </div>

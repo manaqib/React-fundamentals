@@ -17,7 +17,7 @@ function App() {
   const addToCart = (product) => {
     setCart(prevCart => [...prevCart, product]);
   }
-  return <div>
+  return <div className='px-4'>
     <NavBar />
     <h1>My Shopping App</h1>  
 
